@@ -1,7 +1,7 @@
 {
   "settings": {
     "name": "Greater St. Paul",
-    "tagline": "A place to belong. A faith to grow.",
+    "tagline": "44 Rockaway Avenue · Brooklyn, New York",
     "service": "Sundays · 12:30–2:30 PM ET",
     "address": "44 Rockaway Avenue, Brooklyn, NY",
     "email": "",
@@ -50,21 +50,6 @@
       "title": "Youth Chat",
       "text": "A space for young people to talk about their feelings, share what’s on their hearts, and connect with one another.",
       "detail": "One Sunday each month · Check church announcements for the next date and time."
-    },
-    {
-      "title": "Kids & families",
-      "text": "A welcoming space for little ones to discover faith, and families to build friendships.",
-      "detail": "Ask us about age groups and check-in."
-    },
-    {
-      "title": "Groups & connection",
-      "text": "Life is better together. Share a meal, explore Scripture, and build meaningful friendships.",
-      "detail": "Contact us to find a group."
-    },
-    {
-      "title": "Serve our neighbors",
-      "text": "Put love into action through practical care and local outreach.",
-      "detail": "Ask about current volunteer opportunities."
     }
   ],
   "sermons": [
