@@ -1,6 +1,6 @@
 import {renderGallery,mediaUrl} from './gallery-model.js';
 import {BASE,REPO,DESIGN_PATH,PAGE_NAMES,BLOCKS,clone,newBlock,makePage,applyDesign,validateDesign,safeLink,easternISO,easternLocal,compilePage} from './studio-model.js';
-import {GitHubStore} from './studio-github.js';
+import {GitHubStore} from './studio-github.js?v=2';
 const $=s=>document.querySelector(s),store=new GitHubStore();
 let design,published,page='index.html',tab='edit',selected='',undo=[],redo=[],dirty=false,busy=false,renderNumber=0,historyPage=1,sourceCache={},imageTarget=null,autosaveTimer,baselineHead;
 const frame=$('#preview'),tools=$('#tools');

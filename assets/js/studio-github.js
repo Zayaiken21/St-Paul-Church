@@ -2,7 +2,7 @@ import {REPO,DESIGN_PATH,LABELS_PATH,clone,validateDesign,BASE} from './studio-m
 const decode=b=>new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\s/g,'')),c=>c.charCodeAt(0)));
 export class GitHubStore{
  #token='';
- constructor(fetcher=fetch){this.fetcher=fetcher;this.head=null;this.designSHA=null;this.user=null;}
+ constructor(fetcher=(...args)=>globalThis.fetch(...args)){this.fetcher=fetcher;this.head=null;this.designSHA=null;this.user=null;}
  async api(path,method='GET',body){
   const response=await this.fetcher('https://api.github.com'+path,{method,headers:{Authorization:'Bearer '+this.#token,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{})});
   if(!response.ok){const e=await response.json().catch(()=>({}));throw Error(response.status===401?'Your GitHub connection expired. Sign in again.':response.status===403?'GitHub denied this request. Check Contents: Read and write permission, repository access, and the API rate limit.':response.status===409||response.status===422?'The website changed while you were working. Download your draft, reload the published version, and review before publishing again.':e.message||'GitHub could not complete this request. Try again.');}
