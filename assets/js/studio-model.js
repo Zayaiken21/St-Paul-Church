@@ -45,7 +45,7 @@ export const BLOCKS={
 };
 export function newBlock(type){return {id:id(),type,fields:clone(BLOCKS[type].fields),style:{}};}
 export function youtubeId(value){try{const u=new URL(value);let v;if(u.hostname==='youtu.be')v=u.pathname.slice(1);else if(['www.youtube.com','youtube.com','m.youtube.com'].includes(u.hostname))v=u.searchParams.get('v')||u.pathname.split('/')[2];return /^[\w-]{11}$/.test(v||'')?v:'';}catch{return '';}}
-export function setText(n,value){if(n.textContent!==String(value))n.textContent=String(value);}
+export function setText(n,value){const v=String(value);if(n.textContent===v||(n.innerText!==undefined&&n.innerText===v))return;n.textContent=v;if(v.includes('\n')&&n.style)n.style.whiteSpace='pre-line';}
 export function setAttr(n,key,value){if(n.getAttribute(key)!==value)n.setAttribute(key,value);}
 export function renderBlock(block,doc,settings={}){
  const section=doc.createElement('section');section.className='studio-block studio-'+block.type;section.dataset.studioBlock=block.id;section.dataset.siteId=block.id;
@@ -81,6 +81,7 @@ export function applyDesign(doc,design,path){
   for(const [k,v]of Object.entries(edit.attrs||{})){
    if(['href','src'].includes(k)){const u=safeLink(v,{image:k==='src'});if(u)setAttr(n,k,u);}
    if(['alt','title','aria-label'].includes(k))setAttr(n,k,String(v));
+   if(k==='target'){if(v==='_blank'){setAttr(n,'target','_blank');setAttr(n,'rel','noopener noreferrer');}else if(n.hasAttribute('target')){n.removeAttribute('target');}}
   }
   if(edit.hidden)n.style.setProperty('display','none','important');
  }
