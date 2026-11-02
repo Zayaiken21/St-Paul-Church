@@ -62,3 +62,13 @@
  .viewer-arrow{display:none}
 }
 @media(prefers-reduced-motion:reduce){.life-tile-link img{transition:none}}
+
+/* Home page Church Life preview (index.html also loads this file) */
+.moments-home{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center;padding:48px;background:#f0e8f4;border-radius:18px;margin:45px 0 65px}
+.moments-home-image{background:#301143;display:block;border-radius:12px;overflow:hidden}
+.moments-home-image img{display:block;width:100%;height:300px;object-fit:cover;aspect-ratio:4/3}
+.moments-home h2{font-size:clamp(2rem,4vw,3.3rem)}
+.moments-home p{color:var(--muted)}
+.moments-home .eyebrow{color:#806018}
+.moments-home .btn{margin-top:10px}
+@media(max-width:800px){.moments-home{grid-template-columns:1fr;gap:25px;padding:25px}}
