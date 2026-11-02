@@ -1,4 +1,4 @@
-import {renderGallery} from './gallery-model.js';
+import {renderGallery} from './gallery-model.js?v=4';
 export const DESIGN_PATH='assets/studio/design.json';
 export const LABELS_PATH='assets/studio/revision-names.json';
 export const REPO='Zayaiken21/The-growing-Church';
