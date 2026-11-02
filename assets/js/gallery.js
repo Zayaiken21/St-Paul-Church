@@ -1,5 +1,5 @@
 import {init} from './core.js';
-import {renderGallery,mediaUrl,PAGE_SIZE} from './gallery-model.js?v=3';
+import {renderGallery,mediaUrl,PAGE_SIZE} from './gallery-model.js?v=4';
 
 const content=await init();
 const items=(content.moments||[]).filter(x=>mediaUrl(x.url));
@@ -18,13 +18,13 @@ root.addEventListener('click',event=>{const more=event.target.closest('[data-mor
 
 // Full-screen viewer for photos and videos
 const dialog=document.createElement('dialog');dialog.className='life-viewer';dialog.setAttribute('aria-label','Church Life viewer');
-dialog.innerHTML='<div class="viewer-top"><span class="viewer-index" aria-live="polite"></span><button type="button" class="viewer-close" aria-label="Close viewer">✕</button></div><div class="viewer-stage"><button type="button" class="viewer-arrow prev" aria-label="Previous">‹</button><div class="viewer-media"></div><button type="button" class="viewer-arrow next" aria-label="Next">›</button></div><div class="viewer-caption"><p class="eyebrow"></p><h3></h3></div>';
+dialog.innerHTML='<div class="viewer-top"><span class="viewer-index" aria-live="polite"></span><button type="button" class="viewer-close" aria-label="Close viewer">✕</button></div><div class="viewer-stage"><button type="button" class="viewer-arrow prev" aria-label="Previous">‹</button><div class="viewer-media"></div><button type="button" class="viewer-arrow next" aria-label="Next">›</button></div><div class="viewer-caption"><p class="eyebrow"></p></div>';
 document.body.append(dialog);
 const $=s=>dialog.querySelector(s);let list=[],index=0;
 function show(){const item=list[index];if(!item)return;const media=$('.viewer-media');pauseAll();
  if(item.type==='video'){const v=document.createElement('video');v.controls=true;v.playsInline=true;v.autoplay=true;if(mediaUrl(item.image))v.poster=item.image;v.setAttribute('aria-label',item.title||'Church video');const s=document.createElement('source');s.src=item.url;s.type='video/mp4';v.append(s);media.replaceChildren(v);}
  else{const img=document.createElement('img');img.src=item.url;img.alt=item.alt||item.title||'Greater St. Paul';media.replaceChildren(img);}
- $('.eyebrow').textContent=longDate(item.date)||'Greater St. Paul';$('h3').textContent=item.title||'';
+ $('.eyebrow').textContent=longDate(item.date)||'Greater St. Paul';
  $('.viewer-index').textContent=(index+1)+' / '+list.length;dialog.querySelectorAll('.viewer-arrow').forEach(b=>b.hidden=list.length<2);
  const next=list[(index+1)%list.length];if(next?.type==='photo'){const pre=new Image();pre.src=next.url;}}
 function move(n){index=(index+n+list.length)%list.length;show();}
