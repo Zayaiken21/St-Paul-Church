@@ -1,4 +1,5 @@
 import {REPO,DESIGN_PATH,LABELS_PATH,clone,validateDesign,BASE} from './studio-model.js';
+const HISTORY_PATH='assets/studio/history.json';
 const decode=b=>new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\s/g,'')),c=>c.charCodeAt(0)));
 export class GitHubStore{
  #token='';
@@ -31,7 +32,8 @@ export class GitHubStore{
   const commit=await this.commit(entries,'Church Studio: '+name.trim().slice(0,100),latest);
   this.head=commit.sha;this.designSHA=(await this.file(DESIGN_PATH,commit.sha)).sha;return {design:clean,sha:commit.sha};
  }
- async history(page=1){return this.api('/repos/'+REPO+'/commits?path='+DESIGN_PATH+'&per_page=20&page='+page);}
+ async history(page=1,since=''){return this.api('/repos/'+REPO+'/commits?path='+DESIGN_PATH+'&per_page=20&page='+page+(since?'&since='+encodeURIComponent(since):''));}
+ async historyStart(){try{return JSON.parse((await this.file(HISTORY_PATH,this.head||await this.headNow())).text);}catch{return null;}}
  async revision(sha){return validateDesign(JSON.parse((await this.file(DESIGN_PATH,sha)).text));}
  async labels(){return JSON.parse((await this.file(LABELS_PATH,await this.headNow())).text);}
  async rename(sha,name){const head=await this.headNow();const names=JSON.parse((await this.file(LABELS_PATH,head)).text);names[sha]=name.trim().slice(0,100);return this.commit([{path:LABELS_PATH,mode:'100644',type:'blob',content:JSON.stringify(names,null,2)+'\n'}],'Name a Church Studio revision',head);}
