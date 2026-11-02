@@ -50,7 +50,7 @@ export function setAttr(n,key,value){if(n.getAttribute(key)!==value)n.setAttribu
 export function renderBlock(block,doc,settings={}){
  const section=doc.createElement('section');section.className='studio-block studio-'+block.type;section.dataset.studioBlock=block.id;section.dataset.siteId=block.id;
  const f=block.fields||{};
- function el(tag,text,cls,parent=section){const n=doc.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;parent.append(n);return n;}
+ function el(tag,text,cls,parent=section){const n=doc.createElement(tag);if(text!==undefined){n.textContent=text;const k=text?Object.keys(f).find(k=>f[k]===text&&!['image','link','url','alt','height'].includes(k)):'';if(k)n.dataset.field=k;}if(cls)n.className=cls;parent.append(n);return n;}
  function photo(parent=section){const url=safeLink(f.image,{image:true});if(url){const n=el('img',undefined,'',parent);n.src=url;n.alt=f.alt||'';n.loading='lazy';}}
  function button(){const url=safeLink(f.link);if(url){const a=el('a',f.button||'Learn more','btn');a.href=url;}}
  if(block.type==='welcome'){const copy=el('div');el('p',f.eyebrow,'eyebrow',copy);el('h2',f.title,'',copy);el('p',f.text,'',copy);const a=el('a',f.button||'Learn more','btn',copy);a.href=safeLink(f.link)||'#';photo();}

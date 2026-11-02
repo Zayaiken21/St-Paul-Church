@@ -1,4 +1,4 @@
-import {REPO,DESIGN_PATH,LABELS_PATH,clone,validateDesign,BASE} from './studio-model.js?v=5';
+import {REPO,DESIGN_PATH,LABELS_PATH,clone,validateDesign,BASE} from './studio-model.js?v=6';
 const HISTORY_PATH='assets/studio/history.json';
 const decode=b=>new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\s/g,'')),c=>c.charCodeAt(0)));
 export class GitHubStore{
