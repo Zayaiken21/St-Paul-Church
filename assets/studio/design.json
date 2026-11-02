@@ -366,21 +366,6 @@
         "duration": 25
       },
       {
-        "id": "festival-together",
-        "type": "photo",
-        "category": "events",
-        "title": "A moment together",
-        "text": "Pausing for a photo in front of the “Fall for Jesus” backdrop.",
-        "url": "assets/photos/festival-together.jpg",
-        "alt": "Two children posing together in front of the festival backdrop.",
-        "orientation": "landscape",
-        "date": "2026-10-24",
-        "album": "Annual Community Outreach Fall Festival",
-        "albumId": "fall-festival-2026",
-        "w": 448,
-        "h": 334
-      },
-      {
         "id": "festival-gaming",
         "type": "photo",
         "category": "events",
@@ -394,21 +379,6 @@
         "albumId": "fall-festival-2026",
         "w": 448,
         "h": 330
-      },
-      {
-        "id": "festival-portrait",
-        "type": "photo",
-        "category": "events",
-        "title": "Ready for a photo",
-        "text": "A festival portrait beside the autumn backdrop.",
-        "url": "assets/photos/festival-portrait.jpg",
-        "alt": "A child in a black hat and jacket beside the autumn photo backdrop.",
-        "orientation": "portrait",
-        "date": "2026-10-24",
-        "album": "Annual Community Outreach Fall Festival",
-        "albumId": "fall-festival-2026",
-        "w": 450,
-        "h": 600
       },
       {
         "id": "festival-games",
@@ -843,19 +813,6 @@
         "date": "2026-10-24"
       },
       {
-        "id": "p-adc41b31",
-        "type": "photo",
-        "category": "gatherings",
-        "title": "Church photo",
-        "url": "assets/photos/life/p-adc41b31.jpg",
-        "thumb": "assets/photos/life/thumbs/p-adc41b31.jpg",
-        "alt": "A moment from Greater St. Paul church life.",
-        "orientation": "portrait",
-        "w": 480,
-        "h": 640,
-        "date": "2026-10-24"
-      },
-      {
         "id": "p-d967ba14",
         "type": "photo",
         "category": "gatherings",
@@ -907,45 +864,6 @@
         "date": "2026-04-12"
       },
       {
-        "id": "p-dddb7015",
-        "type": "photo",
-        "category": "gatherings",
-        "title": "Church photo",
-        "url": "assets/photos/life/p-dddb7015.jpg",
-        "thumb": "assets/photos/life/thumbs/p-dddb7015.jpg",
-        "alt": "A moment from Greater St. Paul church life.",
-        "orientation": "portrait",
-        "w": 480,
-        "h": 640,
-        "date": "2026-04-12"
-      },
-      {
-        "id": "p-b80c9701",
-        "type": "photo",
-        "category": "gatherings",
-        "title": "Church photo",
-        "url": "assets/photos/life/p-b80c9701.jpg",
-        "thumb": "assets/photos/life/thumbs/p-b80c9701.jpg",
-        "alt": "A moment from Greater St. Paul church life.",
-        "orientation": "portrait",
-        "w": 480,
-        "h": 640,
-        "date": "2026-04-12"
-      },
-      {
-        "id": "p-c0b0215d",
-        "type": "photo",
-        "category": "gatherings",
-        "title": "Church photo",
-        "url": "assets/photos/life/p-c0b0215d.jpg",
-        "thumb": "assets/photos/life/thumbs/p-c0b0215d.jpg",
-        "alt": "A moment from Greater St. Paul church life.",
-        "orientation": "portrait",
-        "w": 480,
-        "h": 640,
-        "date": "2026-04-12"
-      },
-      {
         "id": "p-27eea8be",
         "type": "photo",
         "category": "gatherings",
@@ -959,64 +877,12 @@
         "date": "2026-04-12"
       },
       {
-        "id": "p-65b07dfa",
-        "type": "photo",
-        "category": "gatherings",
-        "title": "Church photo",
-        "url": "assets/photos/life/p-65b07dfa.jpg",
-        "thumb": "assets/photos/life/thumbs/p-65b07dfa.jpg",
-        "alt": "A moment from Greater St. Paul church life.",
-        "orientation": "landscape",
-        "w": 640,
-        "h": 480,
-        "date": "2026-07-11"
-      },
-      {
-        "id": "p-e60028c2",
-        "type": "photo",
-        "category": "gatherings",
-        "title": "Church photo",
-        "url": "assets/photos/life/p-e60028c2.jpg",
-        "thumb": "assets/photos/life/thumbs/p-e60028c2.jpg",
-        "alt": "A moment from Greater St. Paul church life.",
-        "orientation": "portrait",
-        "w": 480,
-        "h": 640,
-        "date": "2026-04-12"
-      },
-      {
-        "id": "p-f8593082",
-        "type": "photo",
-        "category": "gatherings",
-        "title": "Church photo",
-        "url": "assets/photos/life/p-f8593082.jpg",
-        "thumb": "assets/photos/life/thumbs/p-f8593082.jpg",
-        "alt": "A moment from Greater St. Paul church life.",
-        "orientation": "landscape",
-        "w": 640,
-        "h": 480,
-        "date": "2026-07-11"
-      },
-      {
         "id": "p-bd4bd2fa",
         "type": "photo",
         "category": "gatherings",
         "title": "Church photo",
         "url": "assets/photos/life/p-bd4bd2fa.jpg",
         "thumb": "assets/photos/life/thumbs/p-bd4bd2fa.jpg",
-        "alt": "A moment from Greater St. Paul church life.",
-        "orientation": "portrait",
-        "w": 480,
-        "h": 640,
-        "date": "2026-04-12"
-      },
-      {
-        "id": "p-d38113a8",
-        "type": "photo",
-        "category": "gatherings",
-        "title": "Church photo",
-        "url": "assets/photos/life/p-d38113a8.jpg",
-        "thumb": "assets/photos/life/thumbs/p-d38113a8.jpg",
         "alt": "A moment from Greater St. Paul church life.",
         "orientation": "portrait",
         "w": 480,
@@ -1160,19 +1026,6 @@
         "title": "Church photo",
         "url": "assets/photos/life/p-fafa891b.jpg",
         "thumb": "assets/photos/life/thumbs/p-fafa891b.jpg",
-        "alt": "A moment from Greater St. Paul church life.",
-        "orientation": "portrait",
-        "w": 480,
-        "h": 640,
-        "date": "2026-05-01"
-      },
-      {
-        "id": "p-abd11fcb",
-        "type": "photo",
-        "category": "gatherings",
-        "title": "Church photo",
-        "url": "assets/photos/life/p-abd11fcb.jpg",
-        "thumb": "assets/photos/life/thumbs/p-abd11fcb.jpg",
         "alt": "A moment from Greater St. Paul church life.",
         "orientation": "portrait",
         "w": 480,
@@ -2246,19 +2099,6 @@
         "date": "2026-04-04"
       },
       {
-        "id": "p-ad2199d0",
-        "type": "photo",
-        "category": "gatherings",
-        "title": "Church photo",
-        "url": "assets/photos/life/p-ad2199d0.jpg",
-        "thumb": "assets/photos/life/thumbs/p-ad2199d0.jpg",
-        "alt": "A moment from Greater St. Paul church life.",
-        "orientation": "portrait",
-        "w": 480,
-        "h": 640,
-        "date": "2026-04-04"
-      },
-      {
         "id": "p-8330b132",
         "type": "photo",
         "category": "gatherings",
@@ -2463,18 +2303,6 @@
         "w": 480,
         "h": 640,
         "date": "2026-05-02"
-      },
-      {
-        "id": "p-a5bdbc78",
-        "type": "photo",
-        "category": "gatherings",
-        "title": "Church photo",
-        "url": "assets/photos/life/p-a5bdbc78.jpg",
-        "thumb": "assets/photos/life/thumbs/p-a5bdbc78.jpg",
-        "alt": "A moment from Greater St. Paul church life.",
-        "orientation": "landscape",
-        "w": 640,
-        "h": 295
       },
       {
         "id": "p-90cf0e5c",
