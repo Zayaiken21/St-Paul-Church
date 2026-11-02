@@ -71,11 +71,14 @@ export function themeCSS(t={}){
  const size=Math.max(16,Math.min(24,Number(t.size)||16));const radius=Math.max(0,Math.min(40,Number(t.radius)||8));
  return `:root{--green:${color(t.primary,'#4b226b')};--gold:${color(t.gold,'#c49a41')};--paper:${color(t.paper,'#fbf8f1')};--ink:${color(t.ink,'#30213f')};--muted:${color(t.muted,'#73677c')};--serif:${font}}body{font-size:${size}px}footer{background:${color(t.footer,'#301143')}}${t.radius!==undefined?'.card,.panel,.btn,.cta,.hero{border-radius:'+radius+'px}':''}.about-welcome,.visit-welcome,.ministries-welcome{${t.heroTint?'background-color:'+color(t.primary,'#4b226b')+';background-blend-mode:multiply;':''}}`;
 }
+// Keys are a data-site-id, or "anchorId::i.j.k" (element-child path inside an anchor) for parts drawn by page scripts.
+export function resolveKey(doc,key){const [anchor,path]=String(key).split('::');let n=Array.from(doc.querySelectorAll('[data-site-id]')).find(x=>x.dataset.siteId===anchor);if(!n||path===undefined)return n||null;for(const i of path.split('.')){n=n.children[+i];if(!n)return null;}return n;}
+export function pathKey(anchor,el){const idx=[];let n=el;while(n&&n!==anchor){const p=n.parentElement;if(!p)return '';idx.unshift([...p.children].indexOf(n));n=p;}return n===anchor?anchor.dataset.siteId+'::'+idx.join('.'):'';}
 export function applyDesign(doc,design,path){
  const page=design.pages?.[path];if(!page)return;
  let style=doc.getElementById('studio-theme');if(!style){style=doc.createElement('style');style.id='studio-theme';doc.head.append(style);}setText(style,themeCSS(design.theme));
  for(const [key,edit]of Object.entries(page.edits||{})){
-  const n=Array.from(doc.querySelectorAll('[data-site-id]')).find(n=>n.dataset.siteId===key);if(!n)continue;
+  const n=resolveKey(doc,key);if(!n)continue;
   if(edit.text!==undefined && !n.querySelector('[data-site-id]'))setText(n,edit.text);
   for(const [k,v]of Object.entries(edit.style||{})){const value=validStyle(k,v);if(value && n.style[k]!==value)n.style[k]=value;}
   for(const [k,v]of Object.entries(edit.attrs||{})){
