@@ -1,6 +1,5 @@
 import {REPO,DESIGN_PATH,LABELS_PATH,clone,validateDesign,BASE} from './studio-model.js?v=7';
 const HISTORY_PATH='assets/studio/history.json';
-const HIDDEN_PATH='assets/studio/hidden-versions.json';
 export const EDITOR_API='https://xmcikhjiljbrfixjeswd.supabase.co/functions/v1/church-editor';
 const decode=b=>new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\s/g,'')),c=>c.charCodeAt(0)));
 export class GitHubStore{
@@ -39,8 +38,56 @@ export class GitHubStore{
  async revision(sha){return validateDesign(JSON.parse((await this.file(DESIGN_PATH,sha)).text));}
  async labels(){return JSON.parse((await this.file(LABELS_PATH,await this.headNow())).text);}
  async rename(sha,name){const head=await this.headNow();const names=JSON.parse((await this.file(LABELS_PATH,head)).text);names[sha]=name.trim().slice(0,100);return this.commit([{path:LABELS_PATH,mode:'100644',type:'blob',content:JSON.stringify(names,null,2)+'\n'}],'Name a Church Studio revision',head);}
- async hidden(){try{const list=JSON.parse((await this.file(HIDDEN_PATH,await this.headNow())).text);return Array.isArray(list)?list:[];}catch{return [];}}
- async hideVersion(sha){const head=await this.headNow();const list=await this.hidden();if(list.includes(sha))return null;list.push(sha);return this.commit([{path:HIDDEN_PATH,mode:'100644',type:'blob',content:JSON.stringify(list,null,2)+'\n'}],'Remove a version from the Versions list',head);}
+ // Permanently removes one published version from main's history. Later versions are replayed
+ // on top of the version before it, so the live site keeps every later change.
+ async purgeVersion(sha){
+  const head=await this.headNow();
+  const start=await this.historyStart();
+  if(sha===start?.startSha)throw Error('The original version cannot be deleted.');
+  const chain=[];let cur=head;
+  while(cur!==sha){
+   if(chain.length>=200)throw Error('This version is too far back to delete from the editor. Ask the site owner for help.');
+   const c=await this.api('/repos/'+REPO+'/git/commits/'+cur);
+   if(c.parents.length!==1)throw Error('This version cannot be removed safely from the editor. Ask the site owner for help.');
+   chain.unshift({sha:cur,message:c.message,author:c.author,committer:c.committer,parent:c.parents[0].sha});
+   cur=c.parents[0].sha;
+  }
+  const target=await this.api('/repos/'+REPO+'/git/commits/'+sha);
+  if(!target.parents.length)throw Error('The first commit cannot be deleted here.');
+  let newParent=target.parents[0].sha;
+  // Photos and videos this version added stay in the repository, because later versions may still use them.
+  const removed=await this.api('/repos/'+REPO+'/compare/'+newParent+'...'+sha);
+  let keep=(removed.files||[]).filter(f=>f.status==='added'&&/^assets\/(photos|videos)\//.test(f.filename)).map(f=>({path:f.filename,mode:'100644',type:'blob',sha:f.sha}));
+  const mapping={};
+  for(const c of chain){
+   const diff=await this.api('/repos/'+REPO+'/compare/'+c.parent+'...'+c.sha);
+   if((diff.files||[]).length>=300)throw Error('One later version changed too many files to replay from the editor. Ask the site owner for help.');
+   const entries=[...keep];keep=[];
+   for(const f of diff.files||[]){
+    if(f.status==='renamed')entries.push({path:f.previous_filename,mode:'100644',type:'blob',sha:null});
+    if(f.status==='removed')entries.push({path:f.filename,mode:'100644',type:'blob',sha:null});
+    else entries.push({path:f.filename,mode:'100644',type:'blob',sha:f.sha});
+   }
+   if(!entries.length){mapping[c.sha]=newParent;continue;}
+   const base=await this.api('/repos/'+REPO+'/git/commits/'+newParent);
+   const tree=await this.api('/repos/'+REPO+'/git/trees','POST',{base_tree:base.tree.sha,tree:entries});
+   const made=await this.api('/repos/'+REPO+'/git/commits','POST',{message:c.message,tree:tree.sha,parents:[newParent],author:c.author,committer:c.committer});
+   mapping[c.sha]=made.sha;newParent=made.sha;
+  }
+  // Keep the version names that belong to the remaining versions, using their new commit ids.
+  const names=JSON.parse((await this.file(LABELS_PATH,head)).text);
+  const newNames={};
+  for(const [key,value] of Object.entries(names)){if(key===sha)continue;newNames[mapping[key]||key]=value;}
+  let finalSha=newParent;
+  const nameBase=await this.api('/repos/'+REPO+'/git/commits/'+finalSha);
+  const nameTree=await this.api('/repos/'+REPO+'/git/trees','POST',{base_tree:nameBase.tree.sha,tree:[{path:LABELS_PATH,mode:'100644',type:'blob',content:JSON.stringify(newNames,null,2)+'\n'}]});
+  const nameCommit=await this.api('/repos/'+REPO+'/git/commits','POST',{message:'Update Church Studio version names',tree:nameTree.sha,parents:[finalSha]});
+  finalSha=nameCommit.sha;
+  if((await this.headNow())!==head)throw Error('The website changed while the version was being deleted. Open Versions again and retry.');
+  await this.api('/repos/'+REPO+'/git/refs/heads/main','PATCH',{sha:finalSha,force:true});
+  this.head=finalSha;this.designSHA=(await this.file(DESIGN_PATH,finalSha)).sha;
+  return finalSha;
+ }
  async deployment(sha){const b=await this.api('/repos/'+REPO+'/pages/builds/latest');if(!b?.commit||b.commit!==sha)return {status:'queued'};if(b.status==='built')return {status:'completed',conclusion:'success'};if(b.status==='errored')return {status:'completed',conclusion:'failure'};return {status:'in_progress'};}
 }
 
