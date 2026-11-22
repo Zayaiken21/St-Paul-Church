@@ -2,3 +2,11 @@
 
 @media(min-width:1051px) and (max-width:1200px){header .nav{position:relative}header .menu{display:block;background:none;border:1px solid var(--line);border-radius:4px;padding:8px 12px}header nav{display:none;position:absolute;top:100%;left:0;right:0;padding:22px;background:var(--paper);z-index:20;box-shadow:0 15px 30px #4b226b22;align-items:stretch}header nav.open{display:flex;flex-direction:column}header nav a{padding:8px}}
 
+
+/* Giving options: only the methods the church has filled in are shown */
+.giving-options{display:grid;gap:14px;margin:18px 0}
+.giving-options [hidden]{display:none!important}
+.giving-options .btn{justify-self:start}
+.giving-card{border:1px solid rgba(75,34,107,.18);border-radius:14px;padding:16px 18px;background:#fff}
+.giving-card h3{margin:0 0 6px}
+.giving-card p{margin:0}

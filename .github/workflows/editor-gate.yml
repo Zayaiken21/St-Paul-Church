@@ -1,0 +1,35 @@
+name: Update church editor password
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/make-editor-gate.mjs'
+      - '.github/workflows/editor-gate.yml'
+permissions:
+  contents: write
+concurrency:
+  group: church-editor-gate
+  cancel-in-progress: false
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build the editor password check from the GitHub secret
+        env:
+          CHURCH_EDITOR_PASSWORD: ${{ secrets.CHURCH_EDITOR_PASSWORD }}
+        run: node scripts/make-editor-gate.mjs
+      - name: Save the updated check
+        run: |
+          git add assets/studio/gate.json
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Update church editor password check"
+          git pull --rebase origin main
+          git push origin HEAD:main

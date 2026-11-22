@@ -6,7 +6,12 @@
     "address": "44 Rockaway Avenue, Brooklyn, NY",
     "email": "",
     "givingUrl": "",
-    "livestreamUrl": "https://www.youtube.com/@GreaterStPaulHDIWC/live"
+    "livestreamUrl": "https://www.youtube.com/@GreaterStPaulHDIWC/live",
+    "paypalUrl": "",
+    "venmoUrl": "",
+    "cashAppUrl": "",
+    "zelleInfo": "",
+    "checkAddress": ""
   },
   "slides": [
     {
