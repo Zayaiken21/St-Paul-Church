@@ -2686,7 +2686,14 @@
     "index.html": {
       "label": "Home",
       "custom": false,
-      "edits": {},
+      "edits": {
+        "s99": {
+          "text": "Visit & Meet Our Team"
+        },
+        "s102": {
+          "text": "Giving Back"
+        }
+      },
       "blocks": [],
       "order": [],
       "seo": {}
@@ -2759,17 +2766,17 @@
       "seo": {}
     },
     "give.html": {
-      "label": "Giving",
+      "label": "Giving Back",
       "custom": false,
       "edits": {
         "s21": {
-          "text": "Giving"
+          "text": "Giving Back"
         },
         "s48": {
-          "text": "Giving"
+          "text": "Giving Back"
         },
         "s45": {
-          "text": "Visit & give"
+          "text": "Visit & Join Our Team"
         }
       },
       "blocks": [],
