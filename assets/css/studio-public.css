@@ -10,3 +10,5 @@
 .giving-card{border:1px solid rgba(75,34,107,.18);border-radius:14px;padding:16px 18px;background:#fff}
 .giving-card h3{margin:0 0 6px}
 .giving-card p{margin:0}
+
+.mark-img{width:1.6em;height:1.6em;object-fit:contain;border-radius:8px;display:inline-block;vertical-align:middle}

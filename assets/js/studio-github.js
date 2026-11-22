@@ -38,6 +38,6 @@ export class GitHubStore{
  async revision(sha){return validateDesign(JSON.parse((await this.file(DESIGN_PATH,sha)).text));}
  async labels(){return JSON.parse((await this.file(LABELS_PATH,await this.headNow())).text);}
  async rename(sha,name){const head=await this.headNow();const names=JSON.parse((await this.file(LABELS_PATH,head)).text);names[sha]=name.trim().slice(0,100);return this.commit([{path:LABELS_PATH,mode:'100644',type:'blob',content:JSON.stringify(names,null,2)+'\n'}],'Name a Church Studio revision',head);}
- async deployment(sha){const r=await this.api('/repos/'+REPO+'/actions/runs?head_sha='+sha+'&per_page=10');return r.workflow_runs.find(x=>/pages/i.test(x.name))||null;}
+ async deployment(sha){const b=await this.api('/repos/'+REPO+'/pages/builds/latest');if(!b?.commit||b.commit!==sha)return {status:'queued'};if(b.status==='built')return {status:'completed',conclusion:'success'};if(b.status==='errored')return {status:'completed',conclusion:'failure'};return {status:'in_progress'};}
 }
 

@@ -76,6 +76,7 @@ export function resolveKey(doc,key){const [anchor,path]=String(key).split('::');
 export function pathKey(anchor,el){const idx=[];let n=el;while(n&&n!==anchor){const p=n.parentElement;if(!p)return '';idx.unshift([...p.children].indexOf(n));n=p;}return n===anchor?anchor.dataset.siteId+'::'+idx.join('.'):'';}
 export function applyDesign(doc,design,path){
  const page=design.pages?.[path];if(!page)return;
+ const logo=design.content?.settings?.logoImage;if(logo)doc.querySelectorAll('.brand .mark').forEach(mark=>{const img=doc.createElement('img');img.src=logo;img.alt='';img.className='mark mark-img';img.setAttribute('aria-hidden','true');mark.replaceWith(img);});
  let style=doc.getElementById('studio-theme');if(!style){style=doc.createElement('style');style.id='studio-theme';doc.head.append(style);}setText(style,themeCSS(design.theme));
  for(const [key,edit]of Object.entries(page.edits||{})){
   const n=resolveKey(doc,key);if(!n)continue;

@@ -205,3 +205,11 @@ dialog::backdrop{background:#21122fbb;backdrop-filter:blur(3px)}
 
 .device-bezel.is-device.is-frameless{padding:0;background:none;border-radius:0;box-shadow:none}
 .device-bezel.is-device.is-frameless #preview{border-radius:0}
+
+/* Phone: the editing panel slides up over the preview so you keep seeing the page */
+.sheet-close{display:none}
+@media(max-width:820px){
+ .editor-shell[data-view=preview][data-sheet=open] .canvas-area{height:42dvh}
+ .editor-shell[data-view=preview][data-sheet=open] .toolbox{display:flex!important;flex-direction:column;position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;height:58dvh!important;min-height:0!important;overflow:auto;z-index:30;background:#fff;border-radius:18px 18px 0 0;box-shadow:0 -10px 30px #2a1a3a33}
+ .editor-shell[data-view=preview][data-sheet=open] .sheet-close{display:block;position:sticky;top:0;z-index:2;width:100%;min-height:40px;border:0;background:var(--purple);color:#fff;font-weight:700}
+}
