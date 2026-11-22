@@ -48,7 +48,7 @@ export class GitHubStore{
   while(cur!==sha){
    if(chain.length>=200)throw Error('This version is too far back to delete from the editor. Ask the site owner for help.');
    const c=await this.api('/repos/'+REPO+'/git/commits/'+cur);
-   if(c.parents.length!==1)throw Error('This version cannot be removed safely from the editor. Ask the site owner for help.');
+   if(!c.parents.length)throw Error('This version is not part of the current website history. Ask the site owner for help.');
    chain.unshift({sha:cur,message:c.message,author:c.author,committer:c.committer,parent:c.parents[0].sha});
    cur=c.parents[0].sha;
   }
