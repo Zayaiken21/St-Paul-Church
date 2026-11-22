@@ -1,5 +1,6 @@
 import {REPO,DESIGN_PATH,LABELS_PATH,clone,validateDesign,BASE} from './studio-model.js?v=7';
 const HISTORY_PATH='assets/studio/history.json';
+const HIDDEN_PATH='assets/studio/hidden-versions.json';
 export const EDITOR_API='https://xmcikhjiljbrfixjeswd.supabase.co/functions/v1/church-editor';
 const decode=b=>new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\s/g,'')),c=>c.charCodeAt(0)));
 export class GitHubStore{
@@ -38,6 +39,8 @@ export class GitHubStore{
  async revision(sha){return validateDesign(JSON.parse((await this.file(DESIGN_PATH,sha)).text));}
  async labels(){return JSON.parse((await this.file(LABELS_PATH,await this.headNow())).text);}
  async rename(sha,name){const head=await this.headNow();const names=JSON.parse((await this.file(LABELS_PATH,head)).text);names[sha]=name.trim().slice(0,100);return this.commit([{path:LABELS_PATH,mode:'100644',type:'blob',content:JSON.stringify(names,null,2)+'\n'}],'Name a Church Studio revision',head);}
+ async hidden(){try{const list=JSON.parse((await this.file(HIDDEN_PATH,await this.headNow())).text);return Array.isArray(list)?list:[];}catch{return [];}}
+ async hideVersion(sha){const head=await this.headNow();const list=await this.hidden();if(list.includes(sha))return null;list.push(sha);return this.commit([{path:HIDDEN_PATH,mode:'100644',type:'blob',content:JSON.stringify(list,null,2)+'\n'}],'Remove a version from the Versions list',head);}
  async deployment(sha){const b=await this.api('/repos/'+REPO+'/pages/builds/latest');if(!b?.commit||b.commit!==sha)return {status:'queued'};if(b.status==='built')return {status:'completed',conclusion:'success'};if(b.status==='errored')return {status:'completed',conclusion:'failure'};return {status:'in_progress'};}
 }
 
