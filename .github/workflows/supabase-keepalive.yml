@@ -1,0 +1,20 @@
+name: Keep Supabase project active
+on:
+  schedule:
+    - cron: '17 6 */3 * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Send a small request to the Supabase REST API
+        env:
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          if [ -z "$SUPABASE_ANON_KEY" ]; then echo "Add the SUPABASE_ANON_KEY secret first."; exit 1; fi
+          code=$(curl -s -o /dev/null -w '%{http_code}' -H "apikey: $SUPABASE_ANON_KEY" -H "Authorization: Bearer $SUPABASE_ANON_KEY" https://xmcikhjiljbrfixjeswd.supabase.co/rest/v1/)
+          echo "Supabase responded with HTTP $code"
+          case "$code" in 2*|4*) exit 0;; *) exit 1;; esac
