@@ -5,3 +5,7 @@ verify_jwt = false
 [functions.youtube-feed]
 verify_jwt = false
 # Public GET feed. Keys and the shared cache remain server-side.
+
+[functions.church-editor]
+verify_jwt = false
+# Editor backend. Checks the church editor password, then forwards allowed GitHub requests with a server-side token.
