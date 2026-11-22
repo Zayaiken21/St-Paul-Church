@@ -183,3 +183,10 @@ dialog::backdrop{background:#21122fbb;backdrop-filter:blur(3px)}
 
 .w-band.c{width:100%;align-items:center;justify-content:center}
 @media(max-width:820px){.editor-shell[data-view=tools]~.sel-bar{display:none!important}}
+
+/* Device views: real sizes inside a device frame */
+.device-bezel{max-width:100%;display:flex;justify-content:center;align-items:flex-start}
+.device-bezel.is-device{background:#1f1629;border-radius:48px;padding:18px 16px;box-shadow:0 14px 36px #2a1a3a40}
+.device-bezel.is-device[data-device=tablet]{border-radius:34px;padding:22px 20px}
+.device-bezel.is-device #preview{border-radius:30px;box-shadow:none}
+.device-bezel.is-device[data-device=phone] #preview{border-radius:34px}
