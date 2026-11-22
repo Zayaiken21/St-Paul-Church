@@ -8,8 +8,8 @@ const FILE = 'assets/studio/gate.json';
 const ITERATIONS = 310000;
 const password = (process.env.CHURCH_EDITOR_PASSWORD || '').trim();
 
-if (password.length < 16) {
-  console.error('The CHURCH_EDITOR_PASSWORD secret is missing or shorter than 16 characters.');
+if (!password) {
+  console.error('The CHURCH_EDITOR_PASSWORD secret is missing or empty.');
   process.exit(1);
 }
 
