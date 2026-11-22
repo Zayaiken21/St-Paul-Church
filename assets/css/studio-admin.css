@@ -190,3 +190,15 @@ dialog::backdrop{background:#21122fbb;backdrop-filter:blur(3px)}
 .device-bezel.is-device[data-device=tablet]{border-radius:34px;padding:22px 20px}
 .device-bezel.is-device #preview{border-radius:30px;box-shadow:none}
 .device-bezel.is-device[data-device=phone] #preview{border-radius:34px}
+
+/* Real device widths, scaled down to fit the editor */
+.device-fit{width:100%;margin:0 auto;position:relative;flex:none}
+.device-bezel{max-width:none;flex:none}
+.device-bezel.is-device{width:max-content;transform-origin:0 0;padding:14px 12px;border-radius:44px}
+.device-bezel.is-device[data-device=tablet]{padding:18px 16px;border-radius:30px}
+.device-bezel.is-device #preview{flex:none;max-width:none;width:auto}
+.device-bezel.is-device{position:absolute;left:0;top:0}
+
+.device-bezel{box-sizing:border-box}
+.device-bezel.is-device[data-device=desktop]{padding:10px;border-radius:14px;background:#2b2233}
+.device-bezel.is-device[data-device=desktop] #preview{border-radius:4px}
