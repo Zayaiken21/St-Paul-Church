@@ -202,3 +202,6 @@ dialog::backdrop{background:#21122fbb;backdrop-filter:blur(3px)}
 .device-bezel{box-sizing:border-box}
 .device-bezel.is-device[data-device=desktop]{padding:10px;border-radius:14px;background:#2b2233}
 .device-bezel.is-device[data-device=desktop] #preview{border-radius:4px}
+
+.device-bezel.is-device.is-frameless{padding:0;background:none;border-radius:0;box-shadow:none}
+.device-bezel.is-device.is-frameless #preview{border-radius:0}
