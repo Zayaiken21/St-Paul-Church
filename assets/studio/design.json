@@ -2759,17 +2759,17 @@
       "seo": {}
     },
     "give.html": {
-      "label": "Giving Back",
+      "label": "Giving",
       "custom": false,
       "edits": {
         "s21": {
-          "text": "Giving Back"
+          "text": "Giving"
         },
         "s48": {
-          "text": "Giving Back"
+          "text": "Giving"
         },
         "s45": {
-          "text": "Visit & Join Our Team"
+          "text": "Visit & give"
         }
       },
       "blocks": [],
