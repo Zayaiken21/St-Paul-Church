@@ -22,7 +22,7 @@ dialog.innerHTML='<div class="viewer-top"><span class="viewer-index" aria-live="
 document.body.append(dialog);
 const $=s=>dialog.querySelector(s);let list=[],index=0;
 function show(){const item=list[index];if(!item)return;const media=$('.viewer-media');pauseAll();
- if(item.type==='video'){const v=document.createElement('video');v.controls=true;v.playsInline=true;v.autoplay=true;if(mediaUrl(item.image))v.poster=item.image;v.setAttribute('aria-label',item.title||'Church video');const s=document.createElement('source');s.src=item.url;s.type='video/mp4';v.append(s);media.replaceChildren(v);}
+ if(item.type==='video'){const v=document.createElement('video');v.controls=true;v.playsInline=true;v.autoplay=true;v.preload='metadata';if(mediaUrl(item.image))v.poster=item.image;v.setAttribute('aria-label',item.title||'Church video');const s=document.createElement('source');s.src=item.url;s.type='video/mp4';v.append(s);media.replaceChildren(v);}
  else{const img=document.createElement('img');img.src=item.url;img.alt=item.alt||item.title||'Greater St. Paul';media.replaceChildren(img);}
  $('.eyebrow').textContent=longDate(item.date)||'Greater St. Paul';
  $('.viewer-index').textContent=(index+1)+' / '+list.length;dialog.querySelectorAll('.viewer-arrow').forEach(b=>b.hidden=list.length<2);

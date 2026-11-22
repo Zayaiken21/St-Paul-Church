@@ -59,7 +59,7 @@ export function renderBlock(block,doc,settings={}){
  if(block.type==='quote'){el('blockquote',f.text);el('p',f.caption,'eyebrow');}
  if(block.type==='columns'){el('h2',f.title);const grid=el('div',undefined,'grid');for(let i=1;i<=3;i++){const c=el('article',undefined,'card',grid);el('h3',f['title'+i],'',c);el('p',f['text'+i],'',c);}}
  if(block.type==='faq'){el('h2',f.title);for(let i=1;i<=3;i++){const d=el('details');el('summary',f['question'+i],'',d);el('p',f['answer'+i],'',d);}}
- if(block.type==='video'){el('h2',f.title);const vid=youtubeId(f.url);if(vid){const frame=el('iframe');frame.src='https://www.youtube-nocookie.com/embed/'+vid;frame.title=f.title||'Church video';frame.loading='lazy';frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';}}
+ if(block.type==='video'){el('h2',f.title);const vid=youtubeId(f.url);if(vid){const frame=el('iframe');frame.loading='lazy';frame.src='https://www.youtube-nocookie.com/embed/'+vid;frame.title=f.title||'Church video';frame.loading='lazy';frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';}}
  if(block.type==='contact'){el('h2',f.title);el('p',settings.service||'');const a=el('a',settings.address||'Get directions','btn');a.href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(settings.address||'');a.target='_blank';a.rel='noopener noreferrer';}
  if(block.type==='spacer')section.style.minHeight=Math.max(8,Math.min(240,Number(f.height)||48))+'px';
  for(const [k,v]of Object.entries(block.style||{})){const value=validStyle(k,v);if(value)section.style[k]=value;}
