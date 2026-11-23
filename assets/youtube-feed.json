@@ -2,20 +2,20 @@
   "channelId": "UCZ8zYO9to_8PzUWwQj6xRBg",
   "channelName": "Greater St. Paul",
   "channelUrl": "https://www.youtube.com/@GreaterStPaulHDIWC",
-  "fetchedAt": "2026-11-23T01:01:49.301414+00:00",
+  "fetchedAt": "2026-11-23T09:01:22.830353+00:00",
   "source": "public-channel-refresh",
   "archiveComplete": false,
   "videos": [
     {
       "id": "mBU0yrC3zNM",
       "title": "GSP Harvest Service",
-      "status": "live",
+      "status": "completed",
       "publishedAt": null,
       "scheduledStart": null,
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "7 watching"
+      "listingDetail": "99 Streamed 7h ago"
     },
     {
       "id": "LYnWdjQ1TOU",
@@ -26,7 +26,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "98 Streamed 2w ago"
+      "listingDetail": "99 Streamed 2w ago"
     },
     {
       "id": "azJzksmwSc4",
@@ -37,7 +37,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "144 Streamed 4w ago"
+      "listingDetail": "146 Streamed 4w ago"
     },
     {
       "id": "_B__Wj0YO1Q",
@@ -70,7 +70,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "119 Streamed 1mo ago"
+      "listingDetail": "120 Streamed 1mo ago"
     },
     {
       "id": "vN-0LPKgAAk",
@@ -114,7 +114,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "117 Streamed 1mo ago"
+      "listingDetail": "118 Streamed 1mo ago"
     },
     {
       "id": "ZeeORtSa-W8",
@@ -125,7 +125,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "77 Streamed 1mo ago"
+      "listingDetail": "78 Streamed 1mo ago"
     },
     {
       "id": "6dc7uCKjlW0",
@@ -136,7 +136,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "168 Streamed 1mo ago"
+      "listingDetail": "169 Streamed 1mo ago"
     },
     {
       "id": "H4jiaGqRSDI",
@@ -158,7 +158,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "91 Streamed 2mo ago"
+      "listingDetail": "92 Streamed 2mo ago"
     },
     {
       "id": "PCUs5z_zNto",
@@ -213,7 +213,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "126 Streamed 2mo ago"
+      "listingDetail": "128 Streamed 2mo ago"
     },
     {
       "id": "jfpo2qLhons",
